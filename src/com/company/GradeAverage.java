@@ -37,11 +37,14 @@ public class GradeAverage {
     // or equal to the previous value.  Otherwise returns false
     private boolean showsImprovement() {
         //TODO add code here
-        for(int i = 1; i < scores.length; i++){
-            if(scores[i-1] > scores[i])
-                return true;
+        int n = 1;
+        while(n < scores.length){
+            if(scores[n] < scores[n-1]){
+                return false;
+            }
+            n++;
         }
-        return false;
+        return true;
     }
 
     // if the values in the scores array show improvement, returns the
@@ -49,7 +52,7 @@ public class GradeAverage {
     // equal to scores.length()/2
     public double finalGrade() {
         //TODO add code here
-        if(!showsImprovement())
+        if(showsImprovement())
             return  mean(scores.length / 2,scores.length - 1);
 
         return mean(0,scores.length - 1);
